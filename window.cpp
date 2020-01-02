@@ -5,7 +5,7 @@
 #include <QGridLayout>
 #include "CalculateResult.h"
 
-Window::Window(QWidget *parent) : QWidget (parent)
+Window::Window(QWidget *parent) : QWidget (parent), inputIsDouble(false)
 {
     setFixedSize (400,600);
 
@@ -31,6 +31,7 @@ Window::Window(QWidget *parent) : QWidget (parent)
 
 void Window::clearEverything()
 {
+    inputIsDouble = false;
     outputBox->setText("0");
     operand1.str(std::string());
     qDebug() << QString::fromStdString(operand1.str());
@@ -59,6 +60,14 @@ void Window::processNumbersPressed(QString num)
     {
         calculateResult();
     }
+    else if (num == ",")
+    {
+        qDebug() << ". is pressed";
+        inputIsDouble = true;
+        operand1 << num.toStdString();
+        qDebug() << "concatenated string :" << QString::fromStdString(operand1.str());
+        outputBox->setText(QString::fromStdString(operand1.str()));
+    }
     else
     {
         operand1 << num.toStdString();
@@ -74,11 +83,12 @@ void Window::calculateResult()
 
     //Calculate the output of the expression using CalculateResult class
     CalculateResult res(operand1.str());
-    result = res.result();
+    result = res.result(inputIsDouble);
     outputBox->setText(QString::fromStdString(result));
 
     //operand1 set to the latest result
     operand1.str(result);
+    inputIsDouble = false;
 }
 
 Window::~Window()
