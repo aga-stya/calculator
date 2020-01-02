@@ -5,7 +5,7 @@
 #include <QGridLayout>
 #include "CalculateResult.h"
 
-Window::Window(QWidget *parent) : QWidget (parent), inputIsDouble(false)
+Window::Window(QWidget *parent) : QWidget (parent), inputIsDouble(false), resultWasJustCalculated(false)
 {
     setFixedSize (400,600);
 
@@ -81,6 +81,7 @@ void Window::processNumbersPressed(QString num)
     else if (num == "=")
     {
         calculateResult();
+        resultWasJustCalculated = true;
     }
     else if (num == "," || num == ".")
     {
@@ -92,6 +93,11 @@ void Window::processNumbersPressed(QString num)
     }
     else
     {
+        if (resultWasJustCalculated)
+        {
+            operand1.str(std::string());
+            resultWasJustCalculated = false;
+        }
         operand1 << num.toStdString();
         qDebug() << "concatenated string :" << QString::fromStdString(operand1.str());
         outputBox->setText(QString::fromStdString(operand1.str()));

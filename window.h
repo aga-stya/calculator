@@ -54,5 +54,6 @@ private:
 
     std::stringstream operand1;
     bool inputIsDouble;
+    bool resultWasJustCalculated;
 };
 #endif // WINDOW_H

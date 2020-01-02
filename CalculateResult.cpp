@@ -105,6 +105,12 @@ std::string CalculateResult::result(bool isInputDouble)
             double oper2 = 0.0;
             oper1 = std::stod(operandValue.substr(0, (found)).c_str());
             oper2 = std::stod(operandValue.substr(found+1, operandValue.size()).c_str());
+
+            if (oper2 == 0)
+            {
+                calculatedResult = "Can't divide by 0";
+                return calculatedResult;
+            }
             calculatedResult = std::to_string(oper1 / oper2);
             qDebug() << QString::fromStdString(calculatedResult);
             return calculatedResult;
@@ -116,6 +122,13 @@ std::string CalculateResult::result(bool isInputDouble)
             int oper2 = 0.0;
             oper1 = std::stoi(operandValue.substr(0, (found)).c_str());
             oper2 = std::stoi(operandValue.substr(found+1, operandValue.size()).c_str());
+
+            if (oper2 == 0)
+            {
+                calculatedResult = "Can't divide by 0";
+                return calculatedResult;
+            }
+
             calculatedResult = std::to_string(oper1 / oper2);
             qDebug() << QString::fromStdString(calculatedResult);
             return calculatedResult;
