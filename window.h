@@ -26,25 +26,6 @@ private:
     void processNumbersPressed(QString num);
     void calculateResult();
 private:
-//    QPushButton *pb2;
-//    QPushButton *pb3;
-//    QPushButton *pb1;
-//    QPushButton *pb4;
-//    QPushButton *pb5;
-//    QPushButton *pb6;
-//    QPushButton *pb7;
-//    QPushButton *pb8;
-//    QPushButton *pb9;
-//    QPushButton *pb0;
-//    QPushButton *pbAC;
-//    QPushButton *pbPlusMinus;
-//    QPushButton *pbPercent;
-//    QPushButton *pbDivide;
-//    QPushButton *pbMultiply;
-//    QPushButton *pbMinus;
-//    QPushButton *pbPlus;
-//    QPushButton *pbDot;
-//    QPushButton *pbEqual;
 
     QStringList buttonNames = { "AC",
                                 "+/-",
@@ -63,7 +44,7 @@ private:
                                 "3",
                                 "+",
                                 "0",
-                                ".",
+                                ",",
                                 "=",
                                " "};
 
@@ -72,5 +53,6 @@ private:
     QLabel *outputBox;
 
     std::stringstream operand1;
+    bool inputIsDouble;
 };
 #endif // WINDOW_H

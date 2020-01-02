@@ -9,8 +9,8 @@ public:
     CalculateResult(const CalculateResult&) = delete;
     CalculateResult(CalculateResult&&) = delete;
     CalculateResult(std::string operand_value);
+    std::string result(bool isInputDouble);
     ~CalculateResult();
-    std::string result();
 
 private:
     std::string operandValue;
