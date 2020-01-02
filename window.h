@@ -46,7 +46,7 @@ private:
                                 "0",
                                 ",",
                                 "=",
-                               " "};
+                                " "};
 
     QPushButton *buttons[20];
 

@@ -20,8 +20,30 @@ Window::Window(QWidget *parent) : QWidget (parent), inputIsDouble(false)
     for (int i=0; i<20; i++)
     {
         qDebug() << buttonNames[i] << " " << ((i/4)+1) << "," << (i%4);
+
+        //Based on locale, change the decimal point representation to "," or "."
+        if (buttonNames[i] == ",")
+        {
+            QLocale locale;
+            if (locale.country() == QLocale::UnitedStates)
+            {
+                qDebug() << "country is us :" << locale.country();
+                buttonNames[i] = ".";
+            }
+            else if (locale.country() == QLocale::Germany)
+            {
+                qDebug() << "country is germany :" << locale.country();
+                buttonNames[i] = ",";
+            }
+            else
+            {
+                qDebug() << "default case :" << locale.country();
+                buttonNames[i] = ",";
+            }
+        }
         buttons[i] = new QPushButton(buttonNames[i]);
         gridLayout->addWidget(buttons[i], ((i/4)+1), (i%4));
+        //connect the buttons' clicked() signal to the slot buttonPressed()
         connect (buttons[i], SIGNAL(clicked()), this, SLOT(buttonPressed()));
     }
     gridLayout->setSpacing(0);
@@ -60,7 +82,7 @@ void Window::processNumbersPressed(QString num)
     {
         calculateResult();
     }
-    else if (num == ",")
+    else if (num == "," || num == ".")
     {
         qDebug() << ". is pressed";
         inputIsDouble = true;

@@ -21,6 +21,8 @@ std::string CalculateResult::result(bool isInputDouble)
             double oper2 = 0.0;
             oper1 = atof(operandValue.substr(0, (found)).c_str());
             oper2 = atof(operandValue.substr(found+1, operandValue.size()).c_str());
+            qDebug() << "oper1 :" << oper1;
+            qDebug() << "oper2 :" << oper2;
             calculatedResult = std::to_string(oper1 + oper2);
             return calculatedResult;
         }
@@ -121,7 +123,7 @@ std::string CalculateResult::result(bool isInputDouble)
     }
 
     //% and +/- still needs to be implemented
-    return "0";
+    return operandValue;
 }
 
 CalculateResult::~CalculateResult()
