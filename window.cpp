@@ -7,6 +7,9 @@
 
 Window::Window(QWidget *parent) : QWidget (parent), inputIsDouble(false), resultWasJustCalculated(false)
 {
+    //set default locale to avoid the problem with , and . for decimal point
+    QLocale::setDefault(QLocale(QLocale::English, QLocale::UnitedStates));
+
     setFixedSize (400,600);
 
     outputBox = new QLabel(this);

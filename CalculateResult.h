@@ -2,6 +2,9 @@
 #define CALCULATERESULT_H
 
 #include <string>
+#include <memory>
+
+#include "arithmetic/operation.hpp"
 
 class CalculateResult
 {
@@ -15,6 +18,8 @@ public:
 private:
     std::string operandValue;
     std::string calculatedResult;
+    //all the arithmetic operations are executed using this pointer
+    std::unique_ptr<Operation> mathsOperation;
 };
 
 #endif // CALCULATERESULT_H

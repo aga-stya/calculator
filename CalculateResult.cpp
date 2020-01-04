@@ -1,6 +1,11 @@
 #include "CalculateResult.h"
 #include <QDebug>
 #include <QString>
+#include <memory>
+
+#include "arithmetic/operation.hpp"
+#include "arithmetic/calculator_addition.hpp"
+
 
 CalculateResult::CalculateResult(std::string operand_value) : operandValue(operand_value)
 {
@@ -10,33 +15,12 @@ CalculateResult::CalculateResult(std::string operand_value) : operandValue(opera
 std::string CalculateResult::result(bool isInputDouble)
 {
     size_t found = operandValue.find('+');
+
     if (found != std::string::npos)
     {
         qDebug() << "addition operation";
-
-        if (isInputDouble)
-        {
-            qDebug() << "operands have double in them";
-            double oper1 = 0.0;
-            double oper2 = 0.0;
-            oper1 = atof(operandValue.substr(0, (found)).c_str());
-            oper2 = atof(operandValue.substr(found+1, operandValue.size()).c_str());
-            qDebug() << "oper1 :" << oper1;
-            qDebug() << "oper2 :" << oper2;
-            calculatedResult = std::to_string(oper1 + oper2);
-            return calculatedResult;
-        }
-        else
-        {
-            qDebug() << "operands have int in them";
-            int oper1 = 0.0;
-            int oper2 = 0.0;
-            oper1 = std::stoi(operandValue.substr(0, (found)).c_str());
-            oper2 = std::stoi(operandValue.substr(found+1, operandValue.size()).c_str());
-            calculatedResult = std::to_string(oper1 + oper2);
-            qDebug() << QString::fromStdString(calculatedResult);
-            return calculatedResult;
-        }
+        mathsOperation = std::make_unique<Addition> (operandValue.substr(0, (found)).c_str(), operandValue.substr(found+1, operandValue.size()).c_str());
+        return mathsOperation->calculate_result();
     }
 
     found = operandValue.find('-');

@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++14
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -17,14 +17,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     CalculateResult.cpp \
+    arithmetic/calculator_addition.cpp \
+    arithmetic/operation.cpp \
     main.cpp \
     window.cpp
 
 HEADERS += \
     CalculateResult.h \
+    arithmetic/calculator_addition.hpp \
+    arithmetic/operation.hpp \
     window.h
 
 FORMS +=
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
