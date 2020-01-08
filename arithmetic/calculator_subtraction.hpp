@@ -30,6 +30,8 @@ class Subtraction : public Operation
     private:
         unsigned int borrow;
         bool minusSign;
+        std::string operand1;
+        std::string operand2;
 };
 
 #endif

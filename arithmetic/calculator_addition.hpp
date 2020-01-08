@@ -18,15 +18,17 @@ class Addition : public Operation
 
         //calculate and return the addition result
         virtual std::string calculate_result();
+
+        //performs addition on single digits
         std::string singleDigitAddition (std::string operand1, std::string operand2);
 
         //use the default constructor
         //~Addition();
 
     private:
-        //std::string operand1;
-        //std::string operand2;
         unsigned int carry;
+        std::string operand1;
+        std::string operand2;
 };
 
 #endif
