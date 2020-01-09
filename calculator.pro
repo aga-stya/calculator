@@ -21,14 +21,16 @@ SOURCES += \
     arithmetic/calculator_subtraction.cpp \
     arithmetic/operation.cpp \
     main.cpp \
-    window.cpp
+    window.cpp \
+    arithmetic/calculator_multiplication.cpp
 
 HEADERS += \
     CalculateResult.h \
     arithmetic/calculator_addition.hpp \
     arithmetic/calculator_subtraction.hpp \
     arithmetic/operation.hpp \
-    window.h
+    window.h \
+    arithmetic/calculator_multiplication.hpp
 
 FORMS +=
 

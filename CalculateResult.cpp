@@ -6,7 +6,7 @@
 #include "arithmetic/operation.hpp"
 #include "arithmetic/calculator_addition.hpp"
 #include "arithmetic/calculator_subtraction.hpp"
-
+#include "arithmetic/calculator_multiplication.hpp"
 
 CalculateResult::CalculateResult(std::string operand_value) : operandValue(operand_value)
 {
@@ -24,61 +24,20 @@ std::string CalculateResult::result(bool isInputDouble)
         return mathsOperation->calculate_result();
     }
 
+    found = operandValue.find('*');
+    if (found != std::string::npos)
+    {
+        qDebug() << "Multiplication operation";
+        mathsOperation = std::make_unique<Multiplication> (operandValue.substr(0, (found)).c_str(), operandValue.substr(found+1, operandValue.size()).c_str());
+        return mathsOperation->calculate_result();
+    }
+
     found = operandValue.find('-');
     if (found != std::string::npos)
     {
         qDebug() << "subtraction operation";
         mathsOperation = std::make_unique<Subtraction> (operandValue.substr(0, (found)).c_str(), operandValue.substr(found+1, operandValue.size()).c_str());
         return mathsOperation->calculate_result();
-//        if (isInputDouble)
-//        {
-//            qDebug() << "operands have double in them";
-//            double oper1 = 0.0;
-//            double oper2 = 0.0;
-//            oper1 = atof(operandValue.substr(0, (found)).c_str());
-//            oper2 = atof(operandValue.substr(found+1, operandValue.size()).c_str());
-//            calculatedResult = std::to_string(oper1 - oper2);
-//            return calculatedResult;
-//        }
-//        else
-//        {
-//            qDebug() << "operands have int in them";
-//            int oper1 = 0.0;
-//            int oper2 = 0.0;
-//            oper1 = std::stoi(operandValue.substr(0, (found)).c_str());
-//            oper2 = std::stoi(operandValue.substr(found+1, operandValue.size()).c_str());
-//            calculatedResult = std::to_string(oper1 - oper2);
-//            qDebug() << QString::fromStdString(calculatedResult);
-//            return calculatedResult;
-//        }
-    }
-
-    found = operandValue.find('*');
-    if (found != std::string::npos)
-    {
-        qDebug() << "multiplication operation";
-        if (isInputDouble)
-        {
-            qDebug() << "operands have double in them";
-            double oper1 = 0.0;
-            double oper2 = 0.0;
-            oper1 = std::stod(operandValue.substr(0, (found)).c_str());
-            oper2 = std::stod(operandValue.substr(found+1, operandValue.size()).c_str());
-            calculatedResult = std::to_string(oper1 * oper2);
-            qDebug() << QString::fromStdString(calculatedResult);
-            return calculatedResult;
-        }
-        else
-        {
-            qDebug() << "operands have int in them";
-            int oper1 = 0.0;
-            int oper2 = 0.0;
-            oper1 = std::stoi(operandValue.substr(0, (found)).c_str());
-            oper2 = std::stoi(operandValue.substr(found+1, operandValue.size()).c_str());
-            calculatedResult = std::to_string(oper1 * oper2);
-            qDebug() << QString::fromStdString(calculatedResult);
-            return calculatedResult;
-        }
     }
 
     found = operandValue.find('/');

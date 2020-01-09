@@ -5,7 +5,7 @@
 #include <QGridLayout>
 #include "CalculateResult.h"
 
-Window::Window(QWidget *parent) : QWidget (parent), inputIsDouble(false), resultWasJustCalculated(false)
+Window::Window(QWidget *parent) : QWidget (parent), inputIsDouble(false)
 {
     //set default locale to avoid the problem with , and . for decimal point
     QLocale::setDefault(QLocale(QLocale::English, QLocale::UnitedStates));
@@ -84,7 +84,6 @@ void Window::processNumbersPressed(QString num)
     else if (num == "=")
     {
         calculateResult();
-        resultWasJustCalculated = true;
     }
     else if (num == "," || num == ".")
     {
@@ -96,11 +95,6 @@ void Window::processNumbersPressed(QString num)
     }
     else
     {
-        if (resultWasJustCalculated)
-        {
-            operand1.str(std::string());
-            resultWasJustCalculated = false;
-        }
         operand1 << num.toStdString();
         qDebug() << "concatenated string :" << QString::fromStdString(operand1.str());
         outputBox->setText(QString::fromStdString(operand1.str()));
