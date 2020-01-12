@@ -22,13 +22,17 @@ private slots:
     void clearEverything();
 
 private:
-    //void processNumbersPressed(double num);
+    void newValueToTextBox (std::string text);
+    void appendValueToTextBox (std::string text);
     void processNumbersPressed(QString num);
-    void calculateResult();
+    void clearLastCharacter();
+    bool calculateResult();
+    bool canCallCalculateResult();
+
 private:
 
     QStringList buttonNames = { "AC",
-                                "+/-",
+                                "clear",
                                 "%",
                                 "/",
                                 "7",
@@ -46,7 +50,7 @@ private:
                                 "0",
                                 ",",
                                 "=",
-                                " "};
+                                "about"};
 
     QPushButton *buttons[20];
 
@@ -55,5 +59,6 @@ private:
     std::stringstream operand1;
     bool inputIsDouble;
     bool resultWasJustCalculated;
+    bool percentageResultCalculated;
 };
 #endif // WINDOW_H

@@ -5,12 +5,6 @@
 #include "operation.hpp"
 
 //constructor
-/* Operation::Operation(std::string oprnd1, std::string oprnd2)
-            : operand1(oprnd1),
-              operand2(oprnd2)
-{
-
-} */
 
 //checks for the decimal point in any of the operands
 bool Operation::isOperandDouble (std::string &operand)

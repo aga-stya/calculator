@@ -12,7 +12,7 @@ public:
     CalculateResult(const CalculateResult&) = delete;
     CalculateResult(CalculateResult&&) = delete;
     CalculateResult(std::string operand_value);
-    std::string result(bool isInputDouble);
+    std::string result();
     ~CalculateResult();
 
 private:

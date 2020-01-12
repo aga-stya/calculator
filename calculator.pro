@@ -18,6 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     CalculateResult.cpp \
     arithmetic/calculator_addition.cpp \
+    arithmetic/calculator_division.cpp \
+    arithmetic/calculator_percentage.cpp \
     arithmetic/calculator_subtraction.cpp \
     arithmetic/operation.cpp \
     main.cpp \
@@ -27,6 +29,8 @@ SOURCES += \
 HEADERS += \
     CalculateResult.h \
     arithmetic/calculator_addition.hpp \
+    arithmetic/calculator_division.hpp \
+    arithmetic/calculator_percentage.hpp \
     arithmetic/calculator_subtraction.hpp \
     arithmetic/operation.hpp \
     window.h \

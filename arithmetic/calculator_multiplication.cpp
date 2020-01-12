@@ -10,7 +10,8 @@
 Multiplication::Multiplication(std::string oprnd1, std::string oprnd2)
                                 : carry(0),
                                 operand1(oprnd1),
-                                operand2(oprnd2)
+                                operand2(oprnd2),
+                                minus(false)
 {
     bool operand1_minus = false;
     bool operand2_minus = false;
@@ -34,8 +35,8 @@ Multiplication::Multiplication(std::string oprnd1, std::string oprnd2)
         minus = true;
     }
 
-    int operand1PointPosition = 0;
-    int operand2PointPosition = 0;
+    size_t operand1PointPosition = 0;
+    size_t operand2PointPosition = 0;
 
     operand1PointPosition = operand1.find('.');
     if (operand1PointPosition != std::string::npos)
